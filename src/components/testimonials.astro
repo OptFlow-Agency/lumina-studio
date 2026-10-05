@@ -1,0 +1,176 @@
+---
+// src/components/Testimonials.astro
+
+const testimonials = [
+  {
+    quote:
+      "Working with Lumina Studio transformed how we live in our home. They listened to how our family actually uses the space and created something far more elegant and functional than we imagined.",
+    author: "David K.",
+    project: "Full-Home Renovation",
+  },
+  {
+    quote:
+      "Their eye for detail and curation is unparalleled. Every fixture and piece of furniture feels like it was designed specifically for us.",
+    author: "Elena R.",
+    project: "Interior Styling & Furnishing",
+  },
+  {
+    quote:
+      "The virtual design process was seamless from start to finish. Clear timelines, exact shopping lists, and effortless communication.",
+    author: "Marcus T.",
+    project: "Virtual Design (E-Design)",
+  },
+];
+---
+
+<section class="w-full bg-[#FAF7F2] text-stone-900 py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 font-serif select-none overflow-hidden">
+  <div class="max-w-5xl mx-auto space-y-12 sm:space-y-16">
+    <!-- Section Heading -->
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-center text-stone-900">
+      What <span class="text-[#C49A78] font-normal">our clients</span> say about
+      us !
+    </h2>
+
+    <!-- Carousel Container -->
+    <div class="relative flex items-center justify-between gap-4 sm:gap-8 px-2 sm:px-8">
+      <!-- Previous Button -->
+      <button
+        id="prev-testimonial"
+        aria-label="Previous Testimonial"
+        class="relative z-20 text-stone-700 hover:text-[#C49A78] transition-colors p-2 focus:outline-none shrink-0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 sm:w-8 sm:h-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- CSS Grid Stack Container (Prevents Height Jump) -->
+      <div class="grid grid-cols-1 grid-rows-1 flex-1 max-w-3xl items-center justify-center min-h-[220px]">
+        {testimonials.map((item, index) => (
+          <div
+            data-testimonial-slide
+            data-index={index}
+            class={`[grid-area:1/1/2/2] flex flex-col justify-center items-center text-center space-y-6 transition-all duration-700 ease-out ${
+              index === 0
+                ? "opacity-100 translate-x-0 pointer-events-auto z-10"
+                : "opacity-0 translate-x-12 pointer-events-none z-0"
+            }`}
+          >
+            <p class="text-lg sm:text-2xl md:text-3xl font-light leading-relaxed text-stone-800 tracking-wide italic max-w-2xl">
+              &ldquo;{item.quote}&rdquo;
+            </p>
+            <p class="text-base sm:text-xl font-normal text-stone-900 tracking-wide pt-2">
+              {item.author},{" "}
+              <span class="font-light text-stone-700">{item.project}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Next Button -->
+      <button
+        id="next-testimonial"
+        aria-label="Next Testimonial"
+        class="relative z-20 text-stone-700 hover:text-[#C49A78] transition-colors p-2 focus:outline-none shrink-0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 sm:w-8 sm:h-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll("[data-testimonial-slide]");
+  const prevBtn = document.getElementById("prev-testimonial");
+  const nextBtn = document.getElementById("next-testimonial");
+
+  function updateSlides(nextIndex: number, direction: "next" | "prev") {
+    slides.forEach((slide, i) => {
+      const el = slide as HTMLElement;
+
+      if (i === nextIndex) {
+        // Active Slide Transition In
+        el.classList.remove(
+          "opacity-0",
+          "pointer-events-none",
+          "z-0",
+          "-translate-x-12",
+          "translate-x-12",
+        );
+        el.classList.add(
+          "opacity-100",
+          "pointer-events-auto",
+          "z-10",
+          "translate-x-0",
+        );
+      } else if (i === currentIndex) {
+        // Current Slide Transition Out
+        el.classList.remove(
+          "opacity-100",
+          "pointer-events-auto",
+          "z-10",
+          "translate-x-0",
+        );
+        el.classList.add("opacity-0", "pointer-events-none", "z-0");
+
+        if (direction === "next") {
+          el.classList.add("-translate-x-12");
+        } else {
+          el.classList.add("translate-x-12");
+        }
+      } else {
+        // Idle Offscreen Slides
+        el.classList.remove(
+          "opacity-100",
+          "pointer-events-auto",
+          "z-10",
+          "translate-x-0",
+          "-translate-x-12",
+        );
+        el.classList.add(
+          "opacity-0",
+          "pointer-events-none",
+          "z-0",
+          "translate-x-12",
+        );
+      }
+    });
+
+    currentIndex = nextIndex;
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    const targetIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlides(targetIndex, "prev");
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    const targetIndex = (currentIndex + 1) % slides.length;
+    updateSlides(targetIndex, "next");
+  });
+</script>

@@ -1,0 +1,83 @@
+---
+// src/components/WhyWorkWithUs.astro
+import { Image } from "astro:assets";
+import FeatureImg1 from "../assets/work-with-us/why-us-1.webp";
+import FeatureImg2 from "../assets/work-with-us/why-us-2.jpg";
+import FeatureImg3 from "../assets/work-with-us/why-us-3.webp";
+
+const features = [
+  {
+    number: "01",
+    title: "Intentional Curation",
+    description:
+      "Every material, finish, and piece of furniture is selected with purpose.",
+    image: FeatureImg1,
+    alt: "Modern interior setup with stylish furniture",
+  },
+  {
+    number: "02",
+    title: "Turnkey Execution",
+    description:
+      "From initial concept sketch to white-glove installation, we handle every detail.",
+    image: FeatureImg2,
+    alt: "Architectural planning and color palette selecting",
+  },
+  {
+    number: "03",
+    title: "Transparent Process",
+    description:
+      "No hidden fees or guessing games, just clear timelines, transparent budgets, and open communication.",
+    image: FeatureImg3,
+    alt: "Reviewing budget spreadsheets and design documents",
+  },
+];
+
+// Stagger delay utility classes for scroll animation
+const delays = ["delay-100", "delay-200", "delay-300"];
+---
+
+<section class="w-full bg-[#FAF7F2] text-stone-900 py-16 sm:py-24 px-6 sm:px-12 md:px-16 lg:px-24 font-serif select-none overflow-hidden">
+  <div class="max-w-7xl mx-auto space-y-10 sm:space-y-14">
+    <!-- Section Title -->
+    <h2 class="reveal text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-stone-900">
+      Why Work <span class="text-[#C49A78] font-normal">With Us</span>
+    </h2>
+
+    <!-- Features Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {features.map((feature, index) => (
+        <div
+          class={`reveal ${delays[index]} relative w-full h-[320px] md:h-[480px] lg:h-[540px] rounded-sm overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500`}
+        >
+          <!-- Background Image with Zoom on Hover -->
+          <Image
+            src={feature.image}
+            alt={feature.alt}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          />
+
+          <!-- Gradient Overlay (Darker at bottom for crisp text contrast) -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 group-hover:via-black/30 transition-colors duration-500"></div>
+
+          <!-- Card Content Overlay -->
+          <div class="relative z-10 h-full flex flex-col justify-end p-6 sm:p-8 lg:p-10 text-stone-100 space-y-3 sm:space-y-4">
+            <!-- Number Badge -->
+            <span class="text-sm font-sans tracking-[0.2em] text-[#E0C3A8] font-medium uppercase">
+              {feature.number}
+            </span>
+
+            <!-- Title -->
+            <h3 class="text-2xl lg:text-3xl font-light tracking-wide leading-snug drop-shadow-md text-stone-100 group-hover:translate-x-1 transition-transform duration-300">
+              {feature.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-sm sm:text-base lg:text-lg font-light text-stone-200/90 leading-relaxed drop-shadow-sm font-serif">
+              {feature.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

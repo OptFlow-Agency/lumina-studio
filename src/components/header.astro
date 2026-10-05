@@ -1,0 +1,135 @@
+---
+import { LayoutGridCircles } from "@lucide/astro";
+---
+
+<header class="hero-fade-in delay-100 relative z-30 w-full flex items-center justify-between px-6 md:px-16 pt-8 pb-4">
+  <!-- Brand Name -->
+  <a
+    href="#"
+    class="text-2xl md:text-3xl text-stone-100 font-light tracking-wide drop-shadow-md hover:opacity-90 transition-opacity"
+  >
+    Lumina Studio
+  </a>
+
+  <!-- Menu Wrapper (Group wrapper handles hover bridge) -->
+  <div id="menu-container" class="relative group">
+    <!-- Menu Button -->
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="dropdown-menu"
+      aria-label="Toggle Navigation Menu"
+      class="bg-[#F0E6CD] text-stone-900 px-4 py-2 rounded-sm font-serif text-lg tracking-wider flex items-center gap-2 hover:bg-[#e8dbbc] transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#A38D5C]"
+    >
+      <LayoutGridCircles class="text-[#A38D5C] h-4 w-4 font-bold text-xl leading-none" />
+      Menu
+    </button>
+
+    <!-- Invisible Bridge Wrapper (Padding replaces margin) -->
+    <div class="absolute right-0 top-full pt-3 w-80 sm:w-96 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-all duration-300">
+      <!-- Actual Dropdown Content Card -->
+      <div
+        id="dropdown-menu"
+        class="bg-[#F3F1EA] text-stone-900 p-8 sm:p-10 shadow-2xl border border-stone-200/50 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-300 ease-out"
+      >
+        <!-- Nav Links -->
+        <nav class="flex flex-col space-y-3 font-serif text-2xl sm:text-3xl text-stone-900 tracking-tight">
+          <a
+            href="#about"
+            class="hover:text-stone-500 focus:text-stone-500 transition-colors outline-none"
+          >
+            About
+          </a>
+          <a
+            href="#service"
+            class="hover:text-stone-500 focus:text-stone-500 transition-colors outline-none"
+          >
+            Services
+          </a>
+          <a
+            href="#process"
+            class="hover:text-stone-500 focus:text-stone-500 transition-colors outline-none"
+          >
+            Our Work Process
+          </a>
+          <!-- <a
+            href="#blog"
+            class="hover:text-stone-500 focus:text-stone-500 transition-colors outline-none"
+          >
+            Blog
+          </a> -->
+          <a
+            href="#contact"
+            class="hover:text-stone-500 focus:text-stone-500 transition-colors outline-none"
+          >
+            Contact
+          </a>
+        </nav>
+
+        <!-- Divider Line -->
+        <div class="w-full h-[1px] bg-stone-300/80 my-8"></div>
+
+        <!-- Contact & Address Footer -->
+        <div class="space-y-4 font-sans text-[11px] tracking-[0.18em] uppercase text-stone-600">
+          <div class="grid grid-cols-12 gap-2 items-start">
+            <span class="col-span-4 text-stone-400 font-medium">ADDRESS:</span>
+            <span class="col-span-8 text-stone-800 leading-relaxed font-normal">
+              CARRER AUSIAS
+              <br />
+              MARC 13, 08010,
+              <br />
+              BARCELONA
+            </span>
+          </div>
+
+          <div class="grid grid-cols-12 gap-2 items-center pt-2">
+            <span class="col-span-4 text-stone-400 font-medium">
+              TELEPHONE:
+            </span>
+            <a
+              href="tel:+34654496780"
+              class="col-span-8 text-stone-800 hover:underline focus:underline font-normal tracking-wider outline-none"
+            >
+              +34 654 496 780
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initMenuToggle() {
+    const btn = document.getElementById("menu-toggle");
+    const container = document.getElementById("menu-container");
+
+    if (!btn || !container) return;
+
+    // Toggle aria state on click
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", (!isExpanded).toString());
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!container.contains(e.target as Node)) {
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        btn.setAttribute("aria-expanded", "false");
+        btn.focus();
+      }
+    });
+  }
+
+  initMenuToggle();
+  document.addEventListener("astro:page-load", initMenuToggle);
+</script>

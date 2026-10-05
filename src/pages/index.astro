@@ -1,0 +1,47 @@
+---
+// src/pages/index.astro
+import Layout from "./layout.astro";
+import Hero from "../components/hero.astro";
+import WhyWorkWithUs from "../components/work-with-us.astro";
+import ServicesSection from "../components/services.astro";
+import WorkProcess from "../components/work-process.astro";
+import Testimonials from "../components/testimonials.astro";
+import Footer from "../components/footer.astro";
+import Contact from "../components/contact.astro";
+import About from "../components/about.astro";
+---
+
+<Layout title="Lumina Studio — Architectural Interior Design">
+  <main class="space-y-12 sm:space-y-20">
+    <div class="reveal">
+      <Hero />
+    </div>
+    <div class="reveal">
+      <About />
+    </div>
+    <!-- Why Work With Us Section -->
+    <div class="reveal">
+      <WhyWorkWithUs />
+    </div>
+
+    <!-- Our Services Section -->
+    <div class="reveal delay-100">
+      <ServicesSection />
+    </div>
+
+    <!-- Work Process Section -->
+    <div class="reveal delay-200">
+      <WorkProcess />
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="reveal">
+      <Testimonials />
+    </div>
+    <div class="reveal">
+      <Contact />
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

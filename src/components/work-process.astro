@@ -1,0 +1,101 @@
+---
+// src/components/WorkProcess.astro
+
+const steps = [
+  {
+    number: "01",
+    title: "Discovery & Consultation",
+    subtitle: "In-depth briefing & vision alignment",
+    description:
+      "We start with an in-depth conversation to discuss your vision, lifestyle needs, timeline, and investment range.",
+  },
+  {
+    number: "02",
+    title: "Concept & Spatial Planning",
+    subtitle: "Mood boards & spatial layout",
+    description:
+      "Our team develops mood boards, material palettes, and 2D/3D layout options to visually define the direction of your space.",
+  },
+  {
+    number: "03",
+    title: "Sourcing & Project Execution",
+    subtitle: "Procurement & vendor management",
+    description:
+      "Once approved, we handle trade ordering, custom fabrication, vendor coordination, and deliveries.",
+  },
+  {
+    number: "04",
+    title: "Installation & Reveal",
+    subtitle: "White-glove setup & final styling",
+    description:
+      "We style every corner, hang artwork, place lighting, and deliver a fully realized, ready-to-live-in home.",
+  },
+];
+
+const delays = ["delay-100", "delay-200", "delay-300", "delay-400"];
+---
+
+<section
+  id="process"
+  class="w-full bg-[#FAF7F2] text-stone-900 py-20 sm:py-28 px-6 sm:px-12 md:px-20 lg:px-28 font-serif select-none overflow-hidden relative"
+>
+  <div class="max-w-6xl mx-auto space-y-16 sm:space-y-24 relative z-10">
+    <!-- Section Header -->
+    <div class="reveal text-center max-w-2xl mx-auto space-y-3">
+      <span class="text-xs font-sans tracking-[0.25em] uppercase text-[#C49A78] font-medium block">
+        Methodology
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-stone-900">
+        Our <span class="text-[#C49A78] font-normal">Work Process</span>
+      </h2>
+      <div class="w-12 h-[1px] bg-[#C49A78]/60 mx-auto mt-4"></div>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative">
+      <!-- Central Architectural Timeline Line -->
+      <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#C49A78]/10 via-[#C49A78]/50 to-[#C49A78]/10 -translate-x-1/2"></div>
+
+      <!-- Process Steps Grid -->
+      <div class="space-y-12 md:space-y-16">
+        {steps.map((step, index) => {
+          const isEven = index % 2 === 0;
+          return (
+            <div
+              class={`reveal ${delays[index]} relative flex flex-col md:flex-row items-start md:items-center ${isEven ? "md:flex-row-reverse" : ""} group`}
+            >
+              <!-- Timeline Node Marker -->
+              <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#FAF7F2] border border-[#C49A78]/60 flex items-center justify-center z-20 group-hover:scale-110 group-hover:border-[#C49A78] group-hover:bg-[#C49A78] transition-all duration-300 shadow-sm">
+                <span class="text-xs font-sans font-medium text-[#C49A78] group-hover:text-white transition-colors">
+                  {step.number}
+                </span>
+              </div>
+
+              <!-- Content Card Container -->
+              <div
+                class={`w-full md:w-1/2 pl-14 md:pl-0 ${isEven ? "md:pr-16 md:text-right" : "md:pl-16 md:text-left"}`}
+              >
+                <div class="bg-[#F4EFE6]/60 hover:bg-[#F3EBE0] p-8 sm:p-10 rounded-sm border border-stone-300/60 hover:border-[#C49A78]/60 transition-all duration-500 shadow-sm hover:shadow-md space-y-3 group-hover:-translate-y-1">
+                  <span class="text-[11px] font-sans tracking-[0.2em] uppercase text-[#C49A78] block font-medium">
+                    {step.subtitle}
+                  </span>
+
+                  <h3 class="text-2xl sm:text-3xl font-light text-stone-900 tracking-wide">
+                    {step.title}
+                  </h3>
+
+                  <p class="text-base sm:text-lg font-light text-stone-700 leading-relaxed font-serif pt-1">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Empty Spacer Column for Alignment on Desktop -->
+              <div class="hidden md:block w-1/2"></div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

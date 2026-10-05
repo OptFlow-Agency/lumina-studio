@@ -1,0 +1,107 @@
+---
+const exploreLinks = [
+  { name: "Featured Portfolio", href: "#" },
+  { name: "Exclusive Projects", href: "#" },
+  { name: "Design Journal", href: "#" },
+];
+
+const serviceLinks = [
+  { name: "Full-Service Interior Design", href: "#" },
+  { name: "Interior Styling & Furnishing", href: "#" },
+  { name: "Virtual Design (E-Design)", href: "#" },
+  { name: "Architectural Consultation", href: "#" },
+];
+
+const companyLinks = [
+  { name: "About Us", href: "#" },
+  { name: "Our Team", href: "#" },
+];
+---
+
+<footer class="w-full bg-[#413228] text-stone-200 pt-16 sm:pt-24 pb-8 px-6 sm:px-12 md:px-20 lg:px-28 font-serif relative overflow-hidden select-none">
+  <div class="max-w-6xl mx-auto space-y-16 relative z-10">
+    <!-- Brand Title -->
+    <h3 class="text-3xl sm:text-4xl font-light text-stone-100 tracking-wide">
+      Lumina Studio
+    </h3>
+
+    <!-- Navigation Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12 pt-2">
+      <!-- Explore Column -->
+      <div class="space-y-4">
+        <h4 class="text-base sm:text-lg font-sans font-semibold tracking-wider text-stone-100 uppercase">
+          Explore
+        </h4>
+        <ul class="space-y-2.5 text-sm sm:text-base font-sans text-stone-400">
+          {exploreLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="hover:text-stone-200 transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Services Column -->
+      <div class="space-y-4">
+        <h4 class="text-base sm:text-lg font-sans font-semibold tracking-wider text-stone-100 uppercase">
+          Services
+        </h4>
+        <ul class="space-y-2.5 text-sm sm:text-base font-sans text-stone-400">
+          {serviceLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="hover:text-stone-200 transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company Column -->
+      <div class="space-y-4">
+        <h4 class="text-base sm:text-lg font-sans font-semibold tracking-wider text-stone-100 uppercase">
+          Company
+        </h4>
+        <ul class="space-y-2.5 text-sm sm:text-base font-sans text-stone-400">
+          {companyLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="hover:text-stone-200 transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="space-y-2 pt-6 font-sans text-sm sm:text-base text-stone-300 max-w-xl font-normal leading-relaxed">
+      <p class="font-medium text-stone-100">
+        100 Financial District Blvd, Suite 400
+      </p>
+      <p>+1 (800) 555-0199</p>
+      <p>contact@luminastudio.com</p>
+      <p class="pt-1 text-stone-400">
+        Mon &ndash; Fri: 8:00 AM &ndash; 6:00 PM | Sat: By Appointment
+      </p>
+    </div>
+  </div>
+
+  <!-- Watermark Brand Logo Background -->
+  <div class="w-full text-center mt-12 -mb-8 pointer-events-none opacity-[0.06] select-none">
+    <span class="text-[12vw] font-serif tracking-tight text-stone-100 whitespace-nowrap leading-none block">
+      Lumina Studio
+    </span>
+  </div>
+</footer>
