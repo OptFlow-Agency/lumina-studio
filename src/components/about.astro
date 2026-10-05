@@ -8,64 +8,65 @@ import { Image } from "astro:assets";
 
 <section
   id="about"
-  class="w-full bg-[#FAF7F2] text-stone-900 py-12 sm:py-20 px-4 sm:px-12 md:px-20 lg:px-28 font-serif select-none"
+  class="relative w-full text-stone-900 py-16 sm:py-20 px-6 sm:px-12 md:px-16 lg:px-20 font-serif select-none overflow-hidden bg-[#FAF7F2]"
 >
-  <div class="max-w-6xl mx-auto space-y-8 sm:space-y-12">
-    <!-- Title & Intro Paragraph -->
-    <div class="max-w-3xl space-y-4 sm:space-y-6">
-      <h2 class="text-2xl sm:text-4xl md:text-5xl font-light tracking-wide text-stone-900">
-        Our Design <span class="text-[#C49A78] font-normal">Philosophy</span>
-      </h2>
+  <!-- 1. Top Edge Transition Gradient (Blends seamlessly into the bottom of Hero) -->
+  <div class="pointer-events-none absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-stone-200/60 via-[#FAF7F2]/80 to-transparent z-10"></div>
 
-      <p class="text-sm sm:text-xl md:text-2xl font-light text-stone-800 leading-relaxed tracking-wide">
-        At <span class="font-semibold text-[#797D62]">Lumina Studio</span>, we
-        believe your environment deeply shapes how you feel, focus, and thrive.
-        A truly exceptional space isn’t just beautiful to look at, it’s
-        intuitively functional, thoughtfully curated, and uniquely tailored to
-        your life.
-      </p>
-    </div>
+  <!-- 2. Ambient Soft Glow Spots matching Lumina's Brand Colors -->
+  <div class="pointer-events-none absolute -top-20 left-1/4 w-96 h-96 bg-[#C49A78]/20 rounded-full blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-20 right-10 w-[500px] h-[500px] bg-[#797D62]/15 rounded-full blur-3xl"></div>
 
-    <!-- Asymmetrical Gallery Grid (Keeps side-by-side structure on mobile) -->
-    <div class="grid grid-cols-12 gap-2 sm:gap-6 lg:gap-10 items-start pt-2 sm:pt-4">
-      <!-- Left Main Image (7 Columns) -->
-      <div class="col-span-7">
-        <Image
-          src={PhilosophyMain}
-          alt="Lumina Studio interior design living room"
-          class="w-full h-48 sm:h-96 md:h-[500px] lg:h-[600px] object-cover rounded-sm shadow-sm"
-        />
+  <!-- 3. Section Content Container -->
+  <div class="relative z-20 max-w-6xl mx-auto">
+    <!-- Main Horizontal Layout Grid: Text Left (6 cols), Images Right (6 cols) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <!-- Left Column: Content Stack -->
+      <div class="lg:col-span-6 space-y-4 sm:space-y-6">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-stone-900">
+          Our Design <span class="text-[#C49A78] font-normal">Philosophy</span>
+        </h2>
+
+        <p class="text-base sm:text-lg md:text-xl font-light text-stone-800 leading-relaxed tracking-wide">
+          At <span class="font-semibold text-[#797D62]">Lumina Studio</span>, we
+          believe your environment deeply shapes how you feel, focus, and
+          thrive. A truly exceptional space isn’t just beautiful to look at,
+          it’s intuitively functional, thoughtfully curated, and uniquely
+          tailored to your life.
+        </p>
+
+        <p class="text-base sm:text-lg md:text-xl font-light text-stone-800 leading-relaxed tracking-wide pt-1">
+          Whether transforming a single room or guiding a complete architectural
+          renovation, we combine clean lines, rich textures, and intelligent
+          layouts to craft interiors that feel balanced, refined, and personal.
+        </p>
       </div>
 
-      <!-- Right Column Stacked Images (5 Columns) -->
-      <div class="col-span-5 flex flex-col space-y-2 sm:space-y-6 lg:space-y-8">
-        <!-- Top Right Small Accent Image -->
-        <div class="w-3/4 ml-auto">
+      <!-- Right Column: Image Collage -->
+      <div class="lg:col-span-6 grid grid-cols-12 gap-3 sm:gap-4 items-center">
+        <!-- Main Image (Left side of collage, 7 cols) -->
+        <div class="col-span-7">
+          <Image
+            src={PhilosophyMain}
+            alt="Lumina Studio interior design living room"
+            class="w-full h-64 sm:h-80 lg:h-[400px] object-cover rounded-sm shadow-md transition-transform duration-500 hover:scale-[1.01]"
+          />
+        </div>
+
+        <!-- Stacked Accent Images (Right side of collage, 5 cols) -->
+        <div class="col-span-5 space-y-3 sm:space-y-4">
           <Image
             src={PhilosophyTopRight}
             alt="Interior corner detail with bookcase"
-            class="w-full h-20 sm:h-44 md:h-56 lg:h-64 object-cover rounded-sm shadow-sm"
+            class="w-full h-28 sm:h-36 lg:h-44 object-cover rounded-sm shadow-sm transition-transform duration-500 hover:scale-[1.01]"
           />
-        </div>
-
-        <!-- Bottom Right Medium Image -->
-        <div class="w-full">
           <Image
             src={PhilosophyBottomRight}
             alt="Warm gallery wall room setup"
-            class="w-full h-28 sm:h-56 md:h-80 lg:h-[380px] object-cover rounded-sm shadow-sm"
+            class="w-full h-32 sm:h-40 lg:h-[210px] object-cover rounded-sm shadow-sm transition-transform duration-500 hover:scale-[1.01]"
           />
         </div>
       </div>
-    </div>
-
-    <!-- Closing Description Paragraph -->
-    <div class="pt-4 sm:pt-8 max-w-4xl">
-      <p class="text-sm sm:text-xl md:text-2xl font-light text-stone-800 leading-relaxed tracking-wide">
-        Whether transforming a single room or guiding a complete architectural
-        renovation, we combine clean lines, rich textures, and intelligent
-        layouts to craft interiors that feel balanced, refined, and personal.
-      </p>
     </div>
   </div>
 </section>
